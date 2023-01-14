@@ -9,6 +9,21 @@
 
 #include <sstream>
 
+/*
+TODO:
+implement all draw conditons.
+highligh last move on board
+implement UI (Game options, Game Start, Game Restart, Show History)
+Implement some ELO system
+implement network gameplay
+implement a web version
+
+*/
+
+
+
+
+
 void Game::run()
 {
     MegaEngine::initGame(1920,1080);

@@ -1,0 +1,41 @@
+﻿  Assets.cpp
+  Camera.cpp
+  ChessPiece.cpp
+C:\_MyDev\MegaChess\MegaChess\ChessPiece.cpp(121,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\_MyDev\MegaChess\MegaChess\ChessPiece.cpp(122,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Game.cpp
+C:\_MyDev\MegaChess\MegaChess\Game.cpp(228,7): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  main.cpp
+  MegaEngine.cpp
+C:\_MyDev\MegaChess\MegaChess\MegaEngine.cpp(94,12): warning C4101: 'event': unreferenced local variable
+C:\_MyDev\MegaChess\MegaChess\MegaEngine.cpp(167,28): warning C4244: '=': conversion from 'float' to 'Uint32', possible loss of data
+C:\_MyDev\MegaChess\MegaChess\MegaEngine.cpp(168,28): warning C4244: '=': conversion from 'float' to 'Uint32', possible loss of data
+  Sprite.cpp
+box2d.lib(b2_world.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_world.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_polygon_shape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_polygon_shape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_body.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_body.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_joint.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_joint.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_chain_circle_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_chain_circle_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_chain_polygon_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_chain_polygon_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_circle_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_circle_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_edge_circle_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_edge_circle_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_edge_polygon_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_edge_polygon_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_polygon_circle_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_polygon_circle_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_polygon_contact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_polygon_contact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_chain_shape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_chain_shape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+box2d.lib(b2_edge_shape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Assets.obj
+box2d.lib(b2_edge_shape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Assets.obj
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+C:\_MyDev\MegaChess\x64\Release\MegaChess.exe : fatal error LNK1319: 26 mismatches detected
