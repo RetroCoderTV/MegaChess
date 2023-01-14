@@ -1,0 +1,3 @@
+﻿  Game.cpp
+C:\_MyDev\MegaChess\MegaChess\Game.cpp(228,7): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+  MegaChess.vcxproj -> C:\_MyDev\MegaChess\x64\Debug\MegaChess.exe
