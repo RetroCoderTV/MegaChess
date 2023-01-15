@@ -56,7 +56,7 @@ bool Assets::Init(SDL_Renderer* renderer)
     int x=0;
     int y=0;
     SDL_Rect rect={x, y, 1, 1};
-    SDL_FillRect(surface,&rect,0x0100FF50);
+    SDL_FillRect(surface,&rect,0xFFa0a0a0);
     sTextureCache[TEXTURE_CHESSBOARD_HIGHLIGHT]=SDL_CreateTextureFromSurface(renderer,surface);
 
     SDL_FreeSurface(surface);

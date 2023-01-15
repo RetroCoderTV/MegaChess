@@ -35,9 +35,9 @@ private:
 	std::vector<ChessPiece*> pieceSprites;
 	std::vector<Sprite*> highlightSprites;
 
-	int white_player=0; //0=CPU 1=HUMAN
-	int black_player=0;
-	char player_to_act=0; //0=White 1=Black
+	int white_player=1; //0=CPU 1=HUMAN
+	int black_player=1;
+	char player_to_act='w'; //0=White 1=Black
 	const int CPU_PLAYER=0;
 	const int HUMAN_PLAYER=1;
 

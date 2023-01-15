@@ -11,8 +11,8 @@
 
 /*
 TODO:
-implement all draw conditons.
-highligh last move on board
+implement all draw conditons. (done: 50 moves; Reps;)
+highlight most recent move on board
 implement UI (Game options, Game Start, Game Restart, Show History)
 Implement some ELO system
 implement network gameplay
@@ -355,7 +355,7 @@ void Game::StartNewGame()
         printf("uci_response %d=%s\n",i,uci_response[i].c_str());
     }
 
-    SetDifficultyLevel(2); // set diff 0-20
+    SetDifficultyLevel(20); // set diff 0-20
 
     SendStockfishCommand("isready");
     std::vector<std::string> isready_response=ReadStockfishOutput(2);
@@ -404,11 +404,11 @@ std::string Game::GetBestMove()
             printf("           88                                88                                        ,d               \n");
             printf("           88                                88                                        88               \n");
             printf(" ,adPPYba, 88,dPPYba,   ,adPPYba,  ,adPPYba, 88   ,d8  88,dPYba,,adPYba,  ,adPPYYba, MM88MMM ,adPPYba,  \n");
-            printf("a8      .* 88P      8a a8P_____88 a8      ** 88 ,a8    88P     88      8a        `Y8   88   a8P_____88  \n");
-            printf("8b         88       88 8PP******* 8b         8888[88   88      88      88 ,adPPPPP88   88   8PP*******  \n");
-            printf("'8a,   ,aa 88       88 *8b,   ,aa *8a,   ,aa 88~*Yba,  88      88      88 88,    ,88   88,  *8b,   ,aa  \n");
-            printf("  *Ybbd8*' 88       88  ~*Ybbd8*'  ~*Ybbd8*' 88   ~Y8a 88      88      88 ~*8bbdP*Y8   *Y888 ~*Ybbd8*'  \n");
-            printf("\n\n\n\n\n");
+            printf("a8       * 88P      8a !8P     88 a8      ** 88 ,a8    88P     88      8a        `Y8   88   !8P     88  \n");
+            printf("8b         88       88 8PP******* 8b         8888[     88      88      88 ,adPPPPP88   88   8PP*******  \n");
+            printf("'8a,   ,.# 88       88 !8b,       *8a,   ,.# 88~*Yba,  88      88      88 88,    ,88   88,  !8b,        \n");
+            printf("  *Ybbd8*' 88       88   ~Ybbd8*'  ~*Ybbd8*' 88   ~Y8a 88      88      88 ~*8bbdP*Y8   *Y888  ~Ybbd8*'  \n");
+            printf("\n\nCHECKMATE\n\n\n");
         }
         
     }
@@ -446,6 +446,22 @@ void Game::GetFenFromStockfish()
             }
             MoveLog.push_back(fenStr);
             currentFen=response[i].substr(5);
+
+            std::string str=currentFen;
+
+            size_t last_space_pos=str.find_last_of(' ');
+            size_t second_last_space_pos=str.find_last_of(' ',last_space_pos - 1);
+            std::string half_moves=str.substr(second_last_space_pos + 1,last_space_pos - second_last_space_pos - 1);
+            int halfmoves=std::stoi(half_moves);
+
+
+            printf("HALFMOVES=%d\n",halfmoves);
+            if(halfmoves >= 100)
+            {
+                isDraw=true;
+                printf("!!!!!!!!!!!!!!!!  DRAW BY 50 MOVES RULE  !!!!!!!!!!!!!!!!\n");
+            }
+            
         }
     }
 
@@ -469,16 +485,21 @@ void Game::CheckDrawConditions()
             {
                 if(MoveLog[i] == MoveLog[j] && MoveLog[j] == MoveLog[k])
                 {
-                    printf("DRAW BY REPETITION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! %d, %d, and %d\n",i,j,k);
+                    isDraw=true;
+                    printf("!!!!!!!!!!!!!!!!  DRAW BY REPETITION  !!!!!!!!!!!!!!!!\n%d, %d, and %d\n",i,j,k);
                 }
             }
         }
     }
 
-
     // check 50 rule... (50 rule is checked in the GetFenFromStockfish function
     
     // check stalemate...
+      //check current player-to-act's king has a legal move? If it has no legal move and the game is not checkmate, then its stalemate.
+            // use player_to_act to find currentplayer. Then use FEN string to find location of king on board. 
+            // with that square, use the GetLegalMoves function to see if the returned vector is empty. If its empty, simply check isCheckmate
+
+
 }
 
 std::vector<std::string> Game::GetLegalMoves(std::string squareCode)
