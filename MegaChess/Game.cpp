@@ -17,6 +17,9 @@ implement UI (Game options, Game Start, Game Restart, Show History)
 Implement some ELO system
 implement network gameplay
 implement a web version
+Add timer
+Add premoves
+Block pickup pieces that don't belong to you
 
 */
 
@@ -53,7 +56,7 @@ void Game::update()
 {
     if(isCheckmate)
     {
-        printf("\n*******\n*******\n*******\nCHECKMATE!\n*******\n*******\n*******\n");
+        
         return;
     }
 
@@ -352,7 +355,7 @@ void Game::StartNewGame()
         printf("uci_response %d=%s\n",i,uci_response[i].c_str());
     }
 
-    SetDifficultyLevel(20); // set diff 0-20
+    SetDifficultyLevel(2); // set diff 0-20
 
     SendStockfishCommand("isready");
     std::vector<std::string> isready_response=ReadStockfishOutput(2);
@@ -382,16 +385,32 @@ std::string Game::GetBestMove()
     cmd+=currentFen;
     SendStockfishCommand(cmd);
     SendStockfishCommand("go depth 10");
-    std::vector<std::string> position_startpos_response=ReadStockfishOutput((DWORD)cpuThinkTime);
-    for(int i=0; i < position_startpos_response.size(); i++)
+    std::vector<std::string> response=ReadStockfishOutput((DWORD)cpuThinkTime);
+    for(int i=0; i < response.size(); i++)
     {
-        printf("go-depth output: %d=%s\n",i,position_startpos_response[i].c_str());
-        if(position_startpos_response[i].compare(0,9,"bestmove ") == 0)
+        printf("go-depth output: %d=%s\n",i,response[i].c_str());
+        if(response[i].compare(0,9,"bestmove ") == 0)
         {
-            best=position_startpos_response[i].substr(9);
+            best=response[i].substr(9);
             std::size_t found=best.find(" ");
             best=best.substr(0,found);
         }
+        if(response[i].find("mate 0") != std::string::npos)
+        {
+            isCheckmate=true;
+
+            printf("\n\n\n\n\n");
+            printf("           88                                88                                                         \n");
+            printf("           88                                88                                        ,d               \n");
+            printf("           88                                88                                        88               \n");
+            printf(" ,adPPYba, 88,dPPYba,   ,adPPYba,  ,adPPYba, 88   ,d8  88,dPYba,,adPYba,  ,adPPYYba, MM88MMM ,adPPYba,  \n");
+            printf("a8      .* 88P      8a a8P_____88 a8      ** 88 ,a8    88P     88      8a        `Y8   88   a8P_____88  \n");
+            printf("8b         88       88 8PP******* 8b         8888[88   88      88      88 ,adPPPPP88   88   8PP*******  \n");
+            printf("'8a,   ,aa 88       88 *8b,   ,aa *8a,   ,aa 88~*Yba,  88      88      88 88,    ,88   88,  *8b,   ,aa  \n");
+            printf("  *Ybbd8*' 88       88  ~*Ybbd8*'  ~*Ybbd8*' 88   ~Y8a 88      88      88 ~*8bbdP*Y8   *Y888 ~*Ybbd8*'  \n");
+            printf("\n\n\n\n\n");
+        }
+        
     }
     return best;
 }
@@ -430,32 +449,7 @@ void Game::GetFenFromStockfish()
         }
     }
 
-    CheckMovesUntilMate();
     CheckDrawConditions();
-}
-
-void Game::CheckMovesUntilMate()
-{
-    SendStockfishCommand("isready");
-    std::vector<std::string> isready_response=ReadStockfishOutput(100);
-    for(int i=0; i < isready_response.size(); i++)
-    {
-        printf("isready_response %d=%s\n",i,isready_response[i].c_str());
-    }
-
-    SendStockfishCommand("go mate movetime=100");
-    StopStockfishAfterTime(105);
-    std::vector<std::string> response=ReadStockfishOutput(200);
-    for(int i=0; i < response.size(); i++)
-    {
-        printf("movesuntilmatecheck_response %d=%s\n",i,response[i].c_str());
-        if(response[i].find("mate 0") != std::string::npos)
-        {
-            isCheckmate=true;
-        }
-
-    }
-
 }
 
 void Game::StopStockfishAfterTime(DWORD millis)
@@ -515,6 +509,8 @@ std::vector<std::string> Game::GetLegalMoves(std::string squareCode)
                         legals.push_back(str);
                         printf("LEGAL MOVE ADDED TO LIST\n\n");
                     }
+
+                    
                 }          
             }
         }

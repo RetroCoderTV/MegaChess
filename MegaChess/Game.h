@@ -35,7 +35,7 @@ private:
 	std::vector<ChessPiece*> pieceSprites;
 	std::vector<Sprite*> highlightSprites;
 
-	int white_player=1; //0=CPU 1=HUMAN
+	int white_player=0; //0=CPU 1=HUMAN
 	int black_player=0;
 	char player_to_act=0; //0=White 1=Black
 	const int CPU_PLAYER=0;
@@ -58,7 +58,6 @@ private:
 	std::vector<std::string> MoveLog;
 	float autoplayInterval=1.f /4;
 	float autoplayTimer=0.f;
-	void CheckMovesUntilMate();
 	bool isCheckmate=false;
 	bool isDraw=false;
 	void StopStockfishAfterTime(DWORD millis);

@@ -35,3 +35,4 @@
 #Visual Studio
 .vs/
 MegaChess/x64/Release/MegaChess.tlog/unsuccessfulbuild
+x64/Debug/MegaChess.pdb
