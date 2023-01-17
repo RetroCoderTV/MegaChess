@@ -355,7 +355,7 @@ void Game::StartNewGame()
         printf("uci_response %d=%s\n",i,uci_response[i].c_str());
     }
 
-    SetDifficultyLevel(20); // set diff 0-20
+    SetDifficultyLevel(10); // set diff 0-20
 
     SendStockfishCommand("isready");
     std::vector<std::string> isready_response=ReadStockfishOutput(2);
